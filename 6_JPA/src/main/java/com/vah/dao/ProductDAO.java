@@ -1,0 +1,35 @@
+package com.vah.dao;
+
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.vah.entities.Product;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+
+@Repository
+@Transactional
+public class ProductDAO implements ProductDAOInterface   {
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @Override
+    public Product addProduct(Product product) {
+        em.persist(product);
+        return product;
+    }
+
+    @Override
+    @Cacheable(cacheName = "studentsCache")
+    public Product getProduct(int id) {
+        return em.find(Product.class,id);
+    }
+
+    @Override
+    public void saveProduct(Product product) {
+        em.merge(product);
+    }
+}

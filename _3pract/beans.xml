@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="point1" class="Point">
+	<qualifier value="circleRelated"/>
+	<property name="x" value="1" />
+	<property name="y" value="1" />
+	</bean>
+	<bean id="point2" class="Point">
+	<property name="x" value="2" />
+	<property name="y" value="2" />
+	</bean>
+	<!-- <bean id="center" class="Point">
+	<property name="x" value="1" />
+	<property name="y" value="9" />
+	</bean> -->
+	<bean id="circle" class="Circle"></bean>
+	<!-- <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/> -->
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+</beans>
